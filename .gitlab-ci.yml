@@ -4,6 +4,8 @@ variables:
   GIT_DEPTH: 0
   SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  
   SSH_OPTIONS: "-o StrictHostKeyChecking=no"
+  UPLOAD_COMMAND: 'curl -u admin:Zivra1234! -X POST "http://ec2-54-177-114-199.us-west-1.compute.amazonaws.com:8081/service/rest/v1/components?repository=DEMO-ARTIFACT" -H "accept: application/json" -H "Content-Type: multipart/form-data" -F "raw.directory=/latest" -F "raw.asset1=@/artifacts/web-demo.jar" -F "raw.asset1.filename=web-demo.jar"'
+  
 
 stages:
   - maven-build
@@ -17,7 +19,7 @@ maven-build:
     - 'mvn deploy -s ci_settings.xml'
     - mvn package
     - mvn target/*.jar web-demo.jar
-    - 'curl -u admin:Zivra1234! -X POST "http://ec2-54-177-114-199.us-west-1.compute.amazonaws.com:8081/service/rest/v1/components?repository=DEMO-ARTIFACT" -H "accept: application/json" -H "Content-Type: multipart/form-data" -F "raw.directory=/latest" -F "raw.asset1=@/artifacts/web-demo.jar" -F "raw.asset1.filename=web-demo.jar"'
+    - echo $UPLOAD_COMMAND
   only:
     - main
 
