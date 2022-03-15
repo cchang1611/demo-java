@@ -39,14 +39,16 @@
 			</plugin>
 		</plugins>
 	</build>
-<repository>
-     <id>central</id>
-     <name>Central</name>
-     <url>http://ec2-54-177-114-199.us-west-1.compute.amazonaws.com:8081/repository/DEMO-HOSTED/</url>
-</repository>
-<snapshotRepository>
-        <id>snapshots</id>
-          <name>Snapshots</name>
-        <url>http://ec2-54-177-114-199.us-west-1.compute.amazonaws.com:8081/repository/DEMO-SNAPSHOTS/</url>
-</snapshotRepository>
+<repositories>
+	<repository>
+		<id>central</id>
+		<name>Central</name>
+		<url>http://ec2-54-177-114-199.us-west-1.compute.amazonaws.com:8081/repository/DEMO-HOSTED/</url>
+	</repository>
+	<snapshotRepository>
+			<id>snapshots</id>
+			<name>Snapshots</name>
+			<url>http://ec2-54-177-114-199.us-west-1.compute.amazonaws.com:8081/repository/DEMO-SNAPSHOTS/</url>
+	</snapshotRepository>
+</repositories>
 </project>
