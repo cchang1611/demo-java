@@ -16,4 +16,11 @@ maven-build:
   only:
     - main
   
+sonarqube-check:
+  stage: sonarqube-check
+  script:
+    - mvn verify sonar:sonar -Dsonar.qualitygate.wait=true
+  allow_failure: true
+  only:
+    - main
 
