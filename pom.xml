@@ -34,7 +34,7 @@
  	<distributionManagement>
   		<repository>
   			<id>nexus</id>
-   			<url>http://ec2-54-177-114-199.us-west-1.compute.amazonaws.com:8081/</url>
+   			<url>http://ec2-54-177-114-199.us-west-1.compute.amazonaws.com:8081/repository/DEMO-SNAPSHOTS/</url>
   		</repository>
  	</distributionManagement>
 	<build>
