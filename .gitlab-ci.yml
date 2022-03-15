@@ -18,6 +18,8 @@ maven-build:
     - 'mvn deploy -s ci_settings.xml'
     - mvn package
     - ls -a
+    - ls -a ./target
+    - chmod a+r ./target/web-demo.jar
     - mv /builds/demo/demo_logo/target/demo-0.0.1-SNAPSHOT.jar web-demo.jar
     - 'curl -u admin:Zivra1234! -X POST "http://ec2-54-177-114-199.us-west-1.compute.amazonaws.com:8081/service/rest/v1/components?repository=DEMO-ARTIFACT" -H "accept: application/json" -H "Content-Type: multipart/form-data" -F "raw.directory=/latest" -F "raw.asset1=@./target/web-demo.jar" -F "raw.asset1.filename=web-demo.jar"'
   only:
