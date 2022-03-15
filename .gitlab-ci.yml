@@ -13,12 +13,9 @@ maven-build:
   stage: maven-build
   script:
     - mvn clean install
+    - 'mvn deploy -s ci_settings.xml'
   only:
     - dev
-
-deploy:
-   script:
-     - 'mvn deploy -s ci_settings.xml'
 
 sonarqube-check:
   stage: sonarqube-check
