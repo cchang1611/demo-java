@@ -47,10 +47,9 @@ autoDeploy:
     - ssh-keyscan gitlab.com >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
     - '[[ -f /.dockerenv ]] && mkdir -p ~/.ssh && echo "$KNOWN_HOST" > ~/.ssh/known_hosts'
-    - echo 'accessed'
   script:
     # - Get artifact from Nexus
-    - ssh -o StrictHostKeyChecking=no ec2-user@54.177.3.10 'ls'
+    - ssh ec2-user@54.177.3.10 'echo "accessed"'
     #- ssh ec2-user@54.177.3.10 'sudo service web-demo stop'
     #- scp web-demo.jar ec2-user@54.177.3.10:/opt/
     #- ssh ec2-user@54.177.3.10 'sudo service web-demo start'
