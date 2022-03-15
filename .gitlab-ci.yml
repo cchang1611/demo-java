@@ -50,11 +50,10 @@ autoDeploy:
     - chmod 644 ~/.ssh/known_hosts
     - '[[ -f /.dockerenv ]] && mkdir -p ~/.ssh && echo "$KNOWN_HOST" > ~/.ssh/known_hosts'
   script:
-    # - Get artifact from Nexus
-    # - ssh ec2-user@54.177.3.10 'wget http://ec2-54-177-114-199.us-west-1.compute.amazonaws.com:8081/repository/DEMO-ARTIFACT/latest/web-demo.yaml'
     - ssh $SSH_OPTIONS ec2-user@54.177.3.10 'echo "accessed"'
-    #- ssh ec2-user@54.177.3.10 'sudo service web-demo stop'
-    #- scp web-demo.jar ec2-user@54.177.3.10:/opt/
-    #- ssh ec2-user@54.177.3.10 'sudo service web-demo start'
+    - ssh ec2-user@54.177.3.10 'sudo service web-demo stop'
+    - ssh ec2-user@54.177.3.10 'wget http://ec2-54-177-114-199.us-west-1.compute.amazonaws.com:8081/repository/DEMO-ARTIFACT/latest/demo-0.0.1-SNAPSHOT.jar'
+    - ssh ec2-user@54.177.3.10 'mv ./demo-0.0.1-SNAPSHOT.jar /opt/web-demo.jar'
+    - ssh ec2-user@54.177.3.10 'sudo service web-demo start'
   only:
     - main
