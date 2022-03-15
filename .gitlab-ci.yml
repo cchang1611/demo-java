@@ -13,13 +13,16 @@ maven-build:
   stage: maven-build
   script:
     - mvn clean install
-  
+  only:
+    - dev
 
 sonarqube-check:
   stage: sonarqube-check
   script:
-    # - mvn verify sonar:sonar -e -X -Dsonar.qualitygate.wait=true
-    - echo "Prueba"
+    - mvn verify sonar:sonar -Dsonar.qualitygate.wait=true
   allow_failure: true
+  only:
+    - main
+
   
 
