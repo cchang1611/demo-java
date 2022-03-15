@@ -8,6 +8,7 @@ variables:
 stages:
   - maven-build
   - sonarqube-check
+  - deploy
   
 maven-build: 
   stage: maven-build
@@ -16,7 +17,7 @@ maven-build:
     - 'mvn deploy -s ci_settings.xml'
   only:
     - main
-  
+
 sonarqube-check:
   stage: sonarqube-check
   image: maven:3.6.3-jdk-11
@@ -31,5 +32,27 @@ sonarqube-check:
   script:
     - mvn verify sonar:sonar -Dsonar.qualitygate.wait=true
   allow_failure: true
+  only:
+    - main
+
+autoDeploy:
+  image: ubuntu
+  stage: deploy
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client git -y )'
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan gitlab.com >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - '[[ -f /.dockerenv ]] && mkdir -p ~/.ssh && echo "$KNOWN_HOST" > ~/.ssh/known_hosts'
+    - echo 'accessed'
+  script:
+    # - Get artifact from Nexus
+    - ssh ec2-user@54.177.3.10 'ls'
+    #- ssh ec2-user@54.177.3.10 'sudo service web-demo stop'
+    #- scp web-demo.jar ec2-user@54.177.3.10:/opt/
+    #- ssh ec2-user@54.177.3.10 'sudo service web-demo start'
   only:
     - main
