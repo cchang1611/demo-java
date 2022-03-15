@@ -22,8 +22,7 @@ sonarqube-check:
     - mvn sonar:sonar \
         -Dsonar.projectKey=demo_logo \
         -Dsonar.host.url=http://sonarqube.lab.zivra.com:9000 \
-        -Dsonar.login=943693684bf0b7e178bf9fa3ad8c10c470ebaa9f
+        -Dsonar.login=943693684bf0b7e178bf9fa3ad8c10c470ebaa9f \
         -Dsonar.qualitygate.wait=true
-  allow_failure: true
   only:
     - main
