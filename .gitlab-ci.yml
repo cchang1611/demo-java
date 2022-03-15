@@ -54,7 +54,6 @@ autoDeploy:
     - '[[ -f /.dockerenv ]] && mkdir -p ~/.ssh && echo "$KNOWN_HOST" > ~/.ssh/known_hosts'
   script:
     # - Get artifact from Nexus
-    - 
     - ssh $SSH_OPTIONS ec2-user@54.177.3.10 'echo "accessed"'
     #- ssh ec2-user@54.177.3.10 'sudo service web-demo stop'
     #- scp web-demo.jar ec2-user@54.177.3.10:/opt/
