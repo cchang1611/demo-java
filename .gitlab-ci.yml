@@ -7,7 +7,6 @@ variables:
 
 stages:
   - maven-build
-  - sonarqube-check
   
 maven-build: 
   stage: maven-build
