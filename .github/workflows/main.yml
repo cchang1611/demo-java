@@ -1,0 +1,15 @@
+# this script test how to put a csv file into a multiline environment variable
+
+name: Multiline
+
+on:
+  workflow_dispatch:
+
+jobs:
+  repo1_commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: First
+        run: |
+          echo "This pipeline works"          
