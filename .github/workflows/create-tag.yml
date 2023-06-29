@@ -11,12 +11,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      - name: Get latest tag
+      - name: Obtener ultimo tag
         run: |
           latest_tag=$(git describe --abbrev=0 --tags)
           new_tag=$(echo $latest_tag | awk -F. '{print $1"."$2"."$3+1}')
           echo "::set-output name=new_tag::$new_tag"
-      - name: Create tag
+      - name: Crear nuevo tag en repositorio
         run: |
           git tag -a "${{ github.event.release.tag_name }}" -m "Version ${{ github.event.release.tag_name }}"
           git push origin "${{ github.event.release.tag_name }}"
