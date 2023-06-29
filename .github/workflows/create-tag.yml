@@ -1,8 +1,10 @@
 name: Create Tag
 on:
-  push:
-    branches:
-      - main
+  #push:
+  #  branches:
+  #    - main
+  workflow_dispatch:
+
 jobs:
   create-tag:
     runs-on: ubuntu-latest
