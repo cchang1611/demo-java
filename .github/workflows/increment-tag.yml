@@ -1,0 +1,23 @@
+name: Increment Tag
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Increment Tag
+        id: increment-tag
+        uses: ./.github/actions/increment-tag
+        with:
+          tag: ${{ github.ref }}
+
+      - name: Show Incremented Tag
+        run: echo "Incremented Tag: ${{ steps.increment-tag.outputs.incremented_tag }}"
