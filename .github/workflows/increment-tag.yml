@@ -14,8 +14,6 @@ jobs:
       - name: Increment Tag
         id: increment-tag
         uses: ./.github/actions/increment-tag
-        with:
-          tag: ${{ github.ref }}
 
       - name: Show Incremented Tag
-        run: echo "Incremented Tag: ${{ steps.increment-tag.outputs.incremented_tag }}"
+        run: echo "Incremented Tag:${{ steps.increment-tag.outputs.incremented_tag}}"
