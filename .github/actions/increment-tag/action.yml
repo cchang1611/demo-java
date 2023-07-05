@@ -1,0 +1,16 @@
+name: 'Increment Tag'
+description: 'Incrementa el ultimo tag'
+outputs:
+  incremented_tag:
+    description: 'El tag incrementado'
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Run increment-tag script
+      run: |
+        TAG=$(git describe --abbrev=0 --tags)
+        INCREMENTED_TAG=$(bash increment-tag.sh $TAG)
+        echo "::set-output name=incremented_tag::$INCREMENTED_TAG"
