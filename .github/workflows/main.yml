@@ -13,4 +13,4 @@ jobs:
         uses: actions/checkout@v2
     
       - name: Ejecuta la accion para incrementar el tag
-        uses: ./.github/actions/increment-tag/action    
+        uses: ./.github/actions/increment-tag/action@v1    
