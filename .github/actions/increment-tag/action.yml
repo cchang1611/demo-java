@@ -27,5 +27,4 @@ runs:
         echo "{TAG}={$TAG}" >> $GITHUB_OUTPUT
         echo "El ultimo tag es: $TAG"
         INCREMENTED_TAG=$(bash .github/actions/increment-tag/increment-tag.sh $TAG)
-        #echo "::set-output name=incremented_tag::$INCREMENTED_TAG"
         echo "{INCREMENTED-TAG}={$INCREMENTED_TAG}" >> GITHUB_OUTPUT
