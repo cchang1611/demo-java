@@ -9,5 +9,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+    
       - name: Ejecuta la accion para incrementar el tag
         uses: ./.github/actions/increment-tag/action    
