@@ -12,6 +12,7 @@ runs:
         fetch-depth: 0
 
     - name: Debug
+      shell: bash
       run: |
          echo "Ref: ${{ github.ref }}"
          echo "Branches: ${{ github.event.repository.branches }}"
