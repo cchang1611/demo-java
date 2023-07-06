@@ -5,12 +5,12 @@ outputs:
     description: 'El tag incrementado'
 runs:
   using: 'composite'
-  shell: bash
   steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
     - name: Run increment-tag script
+      shell: bash
       run: |
         TAG=$(git describe --abbrev=0 --tags)
         INCREMENTED_TAG=$(bash increment-tag.sh $TAG)
