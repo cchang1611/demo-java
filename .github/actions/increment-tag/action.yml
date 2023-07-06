@@ -15,8 +15,8 @@ runs:
       shell: bash
       run: |
          git fetch --prune --tags
-         lista=$(git branch -r)
-         echo "Branches: $lista"
+         current_branch=$(git symbolic-ref --short HEAD)
+         echo "Branch actual: $current_branch"
         
     - name: Run increment-tag script
       id: tag-incrementado
