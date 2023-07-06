@@ -21,5 +21,7 @@ runs:
       shell: bash
       run: |
         TAG=$(git describe --abbrev=0 --tags)
+        echo "{TAG}={$TAG}" >> $GITHUB_OUTPUT
         INCREMENTED_TAG=$(bash .github/actions/increment-tag/increment-tag.sh $TAG)
-        echo "::set-output name=incremented_tag::$INCREMENTED_TAG"
+        #echo "::set-output name=incremented_tag::$INCREMENTED_TAG"
+        echo "{INCREMENTED-TAG}={$INCREMENTED_TAG}" >> GITHUB_OUTPUT
