@@ -25,6 +25,7 @@ runs:
         git fetch --tags
         TAG=$(git describe --abbrev=0 --tags)
         echo "{TAG}={$TAG}" >> $GITHUB_OUTPUT
-        echo "El ultimo tag es: $TAG"
+        echo "El anterior tag es: $TAG"
         INCREMENTED_TAG=$(sh .github/actions/increment-tag/increment-tag.sh $TAG)
         echo "{INCREMENTED-TAG}={$INCREMENTED_TAG}" >> GITHUB_OUTPUT
+        echo "El nuevo tag es: $INCREMENTED-TAG"
