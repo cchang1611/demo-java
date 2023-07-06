@@ -8,7 +8,14 @@ runs:
   steps:
     - name: Checkout repository
       uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
 
+    - name: Debug
+      run: |
+         echo "Ref: ${{ github.ref }}"
+         echo "Branches: ${{ github.event.repository.branches }}"
+        
     - name: Run increment-tag script
       shell: bash
       run: |
