@@ -1,15 +1,13 @@
-# this script test how to put a csv file into a multiline environment variable
-
-name: Multiline
+# Este script es para verificar el incremento de version del tag
+name: incrementa_tag
 
 on:
   workflow_dispatch:
 
 jobs:
-  repo1_commit:
+  incrementa_tag:
     runs-on: ubuntu-latest
 
     steps:
-      - name: First
-        run: |
-          echo "This pipeline works"          
+      - name: Ejecuta la accion para incrementar el tag
+        uses: .github/actions/increment-tag/action@v1      
