@@ -5,19 +5,35 @@ TAG=$1
 TAG_PREFIX=${TAG%-snapshot}  # Elimina la palabra "snapshot" al final del tag
 TAG_SUFFIX=${TAG#"$TAG_PREFIX"}  # Obtiene la parte del tag después del prefijo
 
-INCREMENTED_TAG=""
-IFS='.' read -ra TAG_PARTS <<< "$TAG_PREFIX"
-for ((i=${#TAG_PARTS[@]}-1; i>=0; i--)); do
-  PART=${TAG_PARTS[i]}
-  if ((PART < 9)); then
-    PART=$((PART + 1))
-    PART=$(printf "%02d" $PART)
-    TAG_PARTS[i]=$PART
-    break
-  else
-    TAG_PARTS[i]=0
-  fi
-done
+if ($TAG -match '^(\d+)\.(\d+)\.(\d+)$') {
+    $major = [int]$Matches[1]
+    $minor = [int]$Matches[2]
+    $patch = [int]$Matches[3]
 
-INCREMENTED_TAG="${TAG_PARTS[*]}$TAG_SUFFIX"
-echo $INCREMENTED_TAG
+    # Incrementar el patch hasta llegar a 9
+    if ($patch -lt 9) {
+        $patch++
+    } else {
+        # Incrementar el minor y reiniciar el patch a 0
+        if ($minor -lt 9) {
+            $minor++
+            $patch = 0
+        } else {
+            # Incrementar el major, reiniciar el minor y el patch a 0
+            if ($major -lt 9) {
+                $major++
+                $minor = 0
+                $patch = 0
+            }
+        }
+    }
+
+    $newTag = "$major.$minor.$patch"
+    $newTagWithSnapshot = $newTag + "-snapshot"
+    Write-Host "Nuevo tag: $newTagWithSnapshot"
+    
+} else {
+    Write-Host "El tag no tiene el formato esperado"
+}
+
+echo "Nuevo Tag es: $newTag"
