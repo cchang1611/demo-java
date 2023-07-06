@@ -11,11 +11,12 @@ runs:
       with:
         fetch-depth: 0
 
-    - name: Debug
+    - name: Lista de branches
       shell: bash
       run: |
-         echo "Ref: ${{ github.ref }}"
-         echo "Branches: ${{ github.event.repository.branches }}"
+         git fetch --prune --tags
+         lista=$(git branch -r)
+         echo "Branches: $lista"
         
     - name: Run increment-tag script
       id: tag-incrementado
