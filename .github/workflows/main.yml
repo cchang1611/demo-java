@@ -10,4 +10,4 @@ jobs:
 
     steps:
       - name: Ejecuta la accion para incrementar el tag
-        uses: .github/actions/increment-tag/action@v1      
+        uses: ./.github/actions/increment-tag/action    
