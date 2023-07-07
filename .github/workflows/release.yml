@@ -26,4 +26,4 @@ jobs:
         with:
           tag_name: ${{ steps.generate_release_tag.outputs.next_release_tag }}
           release_name: Release ${{ steps.generate_release_tag.outputs.next_release_tag }}
-          echo "El nuevo token es: $tag_name"
+          echo "El nuevo token es: $tag_name-snapshot"
